@@ -1,0 +1,14 @@
+<div class="field">
+    <button mat-stroked-button [matMenuTriggerFor]="accountMenu" 
+    #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()"><span>activeAccount</span></button>
+</div>
+<mat-menu #accountMenu="matMenu" [overlapTrigger]="false">
+    <span (mouseleave)="menuTrigger.closeMenu()">
+        <button mat-menu-item >
+            <span>activeAccount</span>   
+        </button>
+        <button mat-menu-item>
+            <span>Logout</span>
+        </button>
+    </span>
+</mat-menu>

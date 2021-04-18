@@ -1,0 +1,15 @@
+.toolbar-container {
+    --toolbar-height: 50px;
+    height: var(--toolbar-height);
+    background: #6577B3;
+    color: white;
+  }
+  .toolbar-container .title {
+    overflow: hidden;
+    padding-left: 8px;
+    width: 100%;
+  }
+  .toolbar-container img {
+    max-height: var(--toolbar-height);
+  }
+  

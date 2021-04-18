@@ -1,0 +1,19 @@
+.field .mat-button-toggle-label-content,
+.field .mat-button-wrapper {
+    width: 100%;
+}
+.field .mat-stroked-button,
+.field .mat-raised-button {
+    width: 100%;
+    min-width: 90px;
+    max-width: 90px;
+    margin: 0 10px;
+}
+.field .mat-button-toggle-label-content span,
+.field .mat-stroked-button span,
+.field span.mat-button-wrapper {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}

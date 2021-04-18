@@ -1,0 +1,22 @@
+<div class="field">
+    <button mat-raised-button *ngIf="!activeAccount" (click)="connect()">
+        <span>Login</span>
+    </button>
+    <div *ngIf="activeAccount">
+    <span>{{balance}}</span>
+    <button mat-stroked-button [matMenuTriggerFor]="accountMenu" 
+            #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()">
+        <span>{{activeAccount}}</span>
+    </button>
+    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+            <button mat-menu-item [cdkCopyToClipboard]="activeAccount">
+                <span>{{activeAccount}}</span>   
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <span>Logout</span>
+            </button>
+        </span>
+    </mat-menu>
+    </div>
+</div>

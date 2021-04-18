@@ -1,0 +1,14 @@
+<mat-toolbar class="toolbar-container" fxLayout="row">
+    <button mat-icon-button fxShow="true" fxHide.gt-sm="true"
+            (click)="toggleSidenav.emit()" aria-label="Pages">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+      <img [src]="logo" />
+    </span>
+    <span class="title">
+      {{title}}
+    </span>
+    <connect-wallet fxShow="true" fxHide.lt-md="true"></connect-wallet>
+  </mat-toolbar>
+  
