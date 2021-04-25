@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  numbers: any;
+
+  constructor() {
+    this.numbers = Array(3).fill(0).map((x, i) => i);
+  }
 
   ngOnInit(): void {
   }

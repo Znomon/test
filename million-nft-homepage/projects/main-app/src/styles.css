@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.one-pixel-nft{
+    height: 10px;
+    width: 10px;
+    background: blue !important;
+}
+.no-button-css {
+  border: none;
+  padding: 0;
+  background: none;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'nft-information-dialog',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NftInformationDialogComponent implements OnInit {
 
+  @Input() id: number;
+
+  minted: boolean = false;
+  buyNow: boolean = true;
+  owned: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  mint(): void {
+    this.minted = true;
+  }
+
+  buy(): void {
+    this.buyNow = false;
+   this.owned = true;
+  }
 }

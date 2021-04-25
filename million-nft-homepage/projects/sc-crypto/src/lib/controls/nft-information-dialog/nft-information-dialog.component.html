@@ -1,14 +1,27 @@
-<div class="field">
-    <button mat-stroked-button [matMenuTriggerFor]="accountMenu" 
-    #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()"><span>activeAccount</span></button>
+<div>
+  <div>
+    <span>{{id}}</span>
+    <img />
+  </div>
+  <div *ngIf="minted && owned">
+    <button mat-menu-item>
+      <span>Change color</span>
+    </button>
+    <button mat-menu-item>
+      <span>Change link</span>
+    </button>
+  </div>
+  <div *ngIf="minted && !owned">
+    <button mat-menu-item *ngIf="buyNow" (click)="buy()">
+      <span>Buy now</span>
+    </button>
+    <button mat-menu-item>
+      <span>Offer</span>
+    </button>
+  </div>
+  <div *ngIf="!minted">
+    <button mat-menu-item (click)="mint()">
+      <span>Mint</span>
+    </button>
+  </div>
 </div>
-<mat-menu #accountMenu="matMenu" [overlapTrigger]="false">
-    <span (mouseleave)="menuTrigger.closeMenu()">
-        <button mat-menu-item >
-            <span>activeAccount</span>   
-        </button>
-        <button mat-menu-item>
-            <span>Logout</span>
-        </button>
-    </span>
-</mat-menu>

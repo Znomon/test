@@ -1,0 +1,6 @@
+<div class="home-container" fxLayout="row wrap" fxLayoutAlign="center">
+  <button *ngFor="let nft of nfts" [matMenuTriggerFor]="menu" class="no-button-css nft-item" [ngClass]="customClass"></button>
+</div>
+<mat-menu #menu="matMenu">
+  <nft-information-dialog [id]=""></nft-information-dialog>
+</mat-menu>

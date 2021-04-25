@@ -19,7 +19,6 @@ export class ConnectWalletComponent implements OnInit {
     this.accountStatusSource = this.contractService.accountStatusSource$.subscribe(accounts => {
       this.changeAccount(accounts);
     });
-    this.contractService.connectAccount();
   }
   connect() {
     this.contractService.openConnectWalletModal();
