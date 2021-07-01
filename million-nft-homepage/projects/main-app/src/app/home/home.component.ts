@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   numbers: any;
 
   constructor() {
-    this.numbers = Array(3).fill(0).map((x, i) => i);
+    this.numbers = Array(1).fill(1).map((x, i) => i);
   }
 
   ngOnInit(): void {

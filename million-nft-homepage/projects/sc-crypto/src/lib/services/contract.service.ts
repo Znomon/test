@@ -2,18 +2,22 @@ import { Injectable } from '@angular/core';
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-const web3 = new Web3(Web3.givenProvider);
+//const web3 = new Web3(window.web3.currentProvider);
+const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContractService {
-  private web3: any;
   private provider: any;
   private accounts: any;
   Web3Modal
+
+  private config: any;
+  private methods: any;
+  private events: any;
 
   private accountStatusSourceRef = new BehaviorSubject<any>(null);
   accountStatusSource$ = this.accountStatusSourceRef.asObservable();
@@ -24,7 +28,8 @@ export class ContractService {
   constructor() {
     if (typeof window.web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
-      window.web3 = this.web3 = new Web3(window.web3.currentProvider);
+      window.web3 = new Web3(window.web3.currentProvider);
+      this.connectAccount();
     } else {
       console.warn(
         'Please use a dapp browser like mist or MetaMask'
@@ -55,9 +60,9 @@ export class ContractService {
   }
 
   async connectAccount(){
-    if('enable' in this.web3.currentProvider){
-      await this.web3.currentProvider.enable();
-      this.accounts = await this.web3.eth.getAccounts();
+    if('enable' in window.web3.currentProvider){
+      //await window.web3.currentProvider.enable();
+      this.accounts = await window.web3.eth.getAccounts();
       this.accountConnected(this.accounts);
     }
   }
@@ -66,8 +71,8 @@ export class ContractService {
     try {
       this.Web3Modal.clearCachedProvider();
       this.provider = await this.Web3Modal.connect(); // set provider
-      window.web3 = this.web3 = new Web3(this.provider); // create web3 instance
-      this.accounts = await this.web3.eth.getAccounts(); 
+      window.web3 = window.web3 = new Web3(this.provider); // create web3 instance
+      this.accounts = await window.web3.eth.getAccounts(); 
       this.accountConnected(this.accounts);
     } catch(e) {
       console.log("Could not connect to provider");
@@ -102,7 +107,64 @@ export class ContractService {
     }
   }
   
-  getAccounts(): any{
+  getAccounts(): any {
     return this.accounts;
+  }
+
+  async executeMethod(contract, name, args) {
+    const config = this.config.getConfig();
+    const gasPrice = await window.web3.eth.getGasPrice();
+    const data = contract.methods[name](...args);
+    const encode = data.encodeABI();
+    const nonce = await window.web3.eth.getTransactionCount(
+      config.public_key,
+      'pending'
+    );
+    const rawTx: any = {
+      nonce,
+      gasPrice,
+      gasLimit: window.web3.utils.toHex('300000'),
+      to: contract.options.address,
+      from: config.public_key,
+      value: window.web3.utils.toHex(window.web3.utils.toWei('0', 'ether')),
+      chainId: config.network,
+      data: encode
+    };
+    const gas = await data.estimateGas(rawTx);
+    rawTx['gas'] = gas;
+
+    const signTransaction = await window.web3.eth.accounts.signTransaction(
+      rawTx,
+      config.private_key
+    );
+
+    const result = await window.web3.eth.sendSignedTransaction(
+      signTransaction.rawTransaction
+    );
+    // const result2 = await this.web3.getTransactionFromBlock(result.transactionHash);
+    return result;
+  }
+
+  getMethods() {
+    const config = this.config.getConfig();
+    this.methods = (config.contract.doc as any).abi.reduce((acc, actual) => {
+      if (actual.type === 'function') {
+        acc.push(actual);
+      }
+      return acc;
+    }, []);
+    return this.methods;
+  }
+
+  getEvents() {
+    const config = this.config.getConfig();
+
+    this.events = (config.contract.doc as any).abi.reduce((acc, actual) => {
+      if (actual.type === 'event') {
+        acc.push(actual);
+      }
+      return acc;
+    }, []);
+    return this.events;
   }
 }

@@ -2,7 +2,9 @@
   outline: red solid 1px;
   outline-offset: -1px;
 }
-.no-button-css {
+.nft-item {
   display: block;
   vertical-align: top;
+  height: 100%;
+  width: 100%;
 }

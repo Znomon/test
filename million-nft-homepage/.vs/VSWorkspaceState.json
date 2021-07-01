@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\projects",
+    "\\projects\\main-app",
+    "\\projects\\main-app\\src",
+    "\\projects\\main-app\\src\\app",
+    "\\projects\\main-app\\src\\app\\home",
+    "\\projects\\sc-crypto",
+    "\\projects\\sc-crypto\\src",
+    "\\projects\\sc-crypto\\src\\lib",
+    "\\projects\\sc-crypto\\src\\lib\\contracts"
+  ],
+  "SelectedNode": "\\projects\\main-app\\src\\app\\home\\home.component.ts",
+  "PreviewInSolutionExplorer": false
+}

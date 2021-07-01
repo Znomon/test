@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MNFTHService } from '../../services/mnfth.service';
+import { ContractService } from '../../services/contract.service';
 
 @Component({
   selector: 'nft-information-dialog',
@@ -12,13 +14,17 @@ export class NftInformationDialogComponent implements OnInit {
   minted: boolean = false;
   buyNow: boolean = true;
   owned: boolean = false;
-  constructor() { }
+  constructor(private MNFTService: MNFTHService,
+              private contractService: ContractService) { }
 
   ngOnInit(): void {
   }
 
   mint(): void {
     this.minted = true;
+    //this.MNFTService.getSymbol(this.contractService.getAccounts()[0]);
+    this.MNFTService.mint(this.contractService.getAccounts()[0], 1, 'https://i.imgur.com//byrZHSy.jpeg');
+    //this.MNFTService.getColorArray(this.contractService.getAccounts()[0]);
   }
 
   buy(): void {
