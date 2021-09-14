@@ -1,0 +1,18 @@
+<div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
+    <ng-container *ngFor="let farm of farms">
+        <div *ngIf="farm.active" fxLayout="column" fxLayoutAlign="space-evenly center" class="farming-button-container">
+            <h1>{{farm.name}}</h1>
+            <div>{{farm.description}}</div>
+            <div>
+                <button mat-raised-button (click)="addToFarm(farm)">Stake</button>
+            </div>
+        </div>
+        <div *ngIf="!farm.active" fxLayout="column" fxLayoutAlign="space-evenly center" class="farming-button-container">
+            <h1>{{farm.name}}</h1>
+            <div>{{farm.description}}</div>
+            <div>
+                <button mat-raised-button (click)="Remove(farm)">Remove</button>
+            </div>
+        </div>
+    </ng-container>
+</div>

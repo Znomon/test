@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
+import { HttpClientModule } from '@angular/common/http';
 import { ScCryptoComponent } from './sc-crypto.component';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +9,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FlexModule, FlexLayoutModule } from '@angular/flex-layout';
 
 import { ConnectWalletComponent } from './controls/connect-wallet/connect-wallet.component';
+import { FarmingComponent } from './controls/farming/farming.component';
 import { NftInformationDialogComponent } from './controls/nft-information-dialog/nft-information-dialog.component';
 import { NftContainerComponent } from './controls/nft-container/nft-container.component';
 
@@ -15,8 +17,10 @@ import { NftContainerComponent } from './controls/nft-container/nft-container.co
   declarations: [
     ScCryptoComponent, 
     ConnectWalletComponent,
+    FarmingComponent,
     NftInformationDialogComponent,
-    NftContainerComponent
+    NftContainerComponent,
+    FarmingComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,8 @@ import { NftContainerComponent } from './controls/nft-container/nft-container.co
     MatMenuModule,
     ClipboardModule,
     FlexModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   exports: [
     ScCryptoComponent, 
@@ -34,11 +39,13 @@ import { NftContainerComponent } from './controls/nft-container/nft-container.co
     FlexModule,
     FlexLayoutModule,
     ConnectWalletComponent,
+    FarmingComponent,
     NftInformationDialogComponent,
     NftContainerComponent
   ],
   entryComponents: [
     ConnectWalletComponent,
+    FarmingComponent,
     NftInformationDialogComponent,
     NftContainerComponent
   ]

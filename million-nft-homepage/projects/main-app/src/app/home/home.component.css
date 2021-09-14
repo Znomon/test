@@ -1,7 +1,10 @@
 .home-container {
     height: 100%;
-  }
-.lowest-screen-resolution {
-/*  height: 880px;*/
-  width: 480px;
+    width:  100%;
+    margin: 10px;
+}
+
+.farming-container{
+    width: 100%;
+    height: 100%;
 }

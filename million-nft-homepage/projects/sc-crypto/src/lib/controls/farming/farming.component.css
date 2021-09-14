@@ -1,0 +1,11 @@
+.farming-button-container{
+    border: solid black 2px;
+    border-radius: 10px;
+    height: 200px;
+    width: 250px;
+}
+
+.farming-button-container button {
+    background-color: burlywood;
+    width: 75px;
+}
